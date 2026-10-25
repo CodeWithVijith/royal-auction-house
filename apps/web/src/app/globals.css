@@ -1,0 +1,32 @@
+@import 'tailwindcss';
+:root {
+  color-scheme: dark;
+}
+body {
+  margin: 0;
+  background: #0b1220;
+  color: #e9eef5;
+  font-family: Arial, Helvetica, sans-serif;
+}
+::selection {
+  background: #fcd34d;
+  color: #0b1220;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .field {
+    @apply block min-h-11 w-full rounded-lg border border-slate-600 bg-slate-900 px-3 py-3 text-slate-100 outline-none focus:border-amber-300 focus:ring-1 focus:ring-amber-300;
+  }
+  .action {
+    @apply rounded-lg bg-amber-300 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-amber-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300;
+  }
+}

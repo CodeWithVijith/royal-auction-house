@@ -1,0 +1,39 @@
+{
+  "name": "sports-auction",
+  "private": true,
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter \"./apps/*\" dev",
+    "build": "pnpm --filter @sports/api build && pnpm --filter @sports/web build",
+    "lint": "eslint .",
+    "typecheck": "pnpm -r typecheck && tsc --project tsconfig.tooling.json --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:e2e": "playwright test",
+    "db:deploy": "dotenv -e .env -- pnpm --filter @sports/db run setup",
+    "db:up": "docker compose up -d --wait"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.58.0",
+    "@types/node": "^22.19.0",
+    "@types/supertest": "^6.0.3",
+    "dotenv": "^16.6.1",
+    "dotenv-cli": "^8.0.0",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.1.6",
+    "exceljs": "^4.4.0",
+    "prettier": "^3.8.1",
+    "sharp": "^0.35.5",
+    "socket.io-client": "^4.8.4",
+    "supertest": "^7.2.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.53.1",
+    "vitest": "^3.2.4"
+  }
+}
