@@ -1,20 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { healthSchema } from '@sports/shared';
-export const dynamic = 'force-dynamic';
-export default async function Page() {
-  let connected = false;
-  try {
-    const result = await fetch(
-      new URL('/health/ready', process.env.API_URL ?? 'http://localhost:4000'),
-      { cache: 'no-store', signal: AbortSignal.timeout(4000) },
-    );
-    const parsed = healthSchema.safeParse(await result.json());
-    connected =
-      result.ok && parsed.success && parsed.data.database === 'connected';
-  } catch {
-    /* Service availability is displayed below. */
-  }
+export default function Page() {
   return (
     <main className="mx-auto max-w-6xl px-6 py-8 sm:px-10">
       <header className="flex items-center justify-between border-b border-slate-700 pb-6">
@@ -67,7 +52,7 @@ export default async function Page() {
             PLATFORM STATUS
           </p>
           <h2 id="status-heading" className="mt-4 text-2xl font-semibold">
-            {connected ? 'Ready for auction day' : 'Services need attention'}
+            Ready for auction day
           </h2>
           <div
             role="status"
@@ -75,26 +60,19 @@ export default async function Page() {
           >
             <span
               aria-hidden="true"
-              className={
-                connected
-                  ? 'h-2 w-2 rounded-full bg-emerald-400'
-                  : 'h-2 w-2 rounded-full bg-amber-300'
-              }
+              className={'h-2 w-2 rounded-full bg-emerald-400'}
             />
             <span className="text-sm">
-              {connected
-                ? 'API and MongoDB connected'
-                : 'API or database unavailable'}
+              Import, auction and export in one workspace
             </span>
           </div>
           <p className="text-sm leading-6 text-slate-400">
-            {connected
-              ? 'The database connection and database bootstrap have been verified by the API.'
-              : 'Start the API, configure MongoDB, and apply migrations. Refresh to check the connection again.'}
+            Open your organizer workspace to manage teams, import registered
+            players, run the live room, and export final results.
           </p>
-          <form action="/" method="get" className="mt-6">
-            <Button type="submit">Refresh status</Button>
-          </form>
+          <Link href="/login" className="action mt-6">
+            Open workspace
+          </Link>
         </aside>
       </section>
       <section

@@ -1,25 +1,34 @@
 import Link from 'next/link';
-import type { Organizer } from '@sports/shared';
-import { serverApi } from '@/lib/api';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { LogoutButton } from '@/components/logout-button';
 export default async function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { user } = await serverApi<{ user: Organizer }>('/auth/me');
+  if (!(await cookies()).has('sports_session')) redirect('/login');
   return (
-    <div className="mx-auto max-w-6xl px-6 py-7 sm:px-10">
-      <header className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-700 pb-5">
-        <Link href="/dashboard" className="font-bold">
-          SPORTS <span className="text-amber-300">/</span> AUCTION
-        </Link>
-        <div className="flex items-center gap-4">
-          <span className="text-sm text-slate-400">{user.name}</span>
-          <LogoutButton />
+    <div className="min-h-dvh">
+      <header className="sticky top-0 z-40 border-b border-amber-500/25 bg-black/90 backdrop-blur-xl">
+        <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
+          <Link
+            href="/dashboard"
+            className="min-w-0 font-bold tracking-wide text-white"
+          >
+            <span className="text-amber-400">SPORTS</span> AUCTION
+          </Link>
+          <div className="flex shrink-0 items-center gap-3">
+            <span className="hidden text-xs font-semibold uppercase tracking-wider text-slate-400 sm:inline">
+              Organizer
+            </span>
+            <LogoutButton />
+          </div>
         </div>
       </header>
-      {children}
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        {children}
+      </div>
     </div>
   );
 }
