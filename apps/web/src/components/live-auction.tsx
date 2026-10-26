@@ -59,11 +59,12 @@ export function LiveAuction({
       );
     }
   }, [adopt, base]);
-  useEffect(() => {
-    const timer = setInterval(() => void refresh(), 3000);
-    return () => clearInterval(timer);
-  }, [refresh]);
   const connected = useAuctionEvents(id, initial.auction.version, refresh);
+  useEffect(() => {
+    if (connected) return;
+    const timer = setInterval(() => void refresh(), 10000);
+    return () => clearInterval(timer);
+  }, [connected, refresh]);
   async function act(action: string, payload: unknown) {
     setBusy(true);
     setError('');
@@ -140,13 +141,13 @@ export function LiveAuction({
     });
   }
   return (
-    <main className="py-10">
+    <main className="py-8 sm:py-10">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs tracking-widest text-amber-300">
+          <p className="eyebrow">
             {data.auction.name} / {data.auction.denomination}
           </p>
-          <h1 className="mt-3 text-4xl font-semibold">Live auction</h1>
+          <h1 className="page-heading mt-3">Live Auction</h1>
           <p className="mt-2 text-xs text-slate-400">
             {connected
               ? 'Live connection active'
@@ -179,7 +180,7 @@ export function LiveAuction({
         </div>
       )}
       <div className="mt-8 grid gap-7 lg:grid-cols-[minmax(0,1.5fr)_minmax(18rem,1fr)]">
-        <section className="rounded-2xl border border-slate-700 bg-slate-900 p-6 text-center sm:p-9">
+        <section className="panel p-5 text-center sm:p-9">
           <div
             className="relative mx-auto h-48 w-48 sm:h-64 sm:w-64"
             aria-hidden="true"
@@ -367,10 +368,7 @@ export function LiveAuction({
         </section>
         <aside aria-label="Team budgets" className="space-y-4">
           {data.teams.map((team) => (
-            <article
-              key={team._id}
-              className="rounded-xl border border-slate-700 bg-slate-900 p-5"
-            >
+            <article key={team._id} className="stat-card">
               <h2 className="text-xl font-semibold">{team.name}</h2>
               <div className="mt-4 flex justify-between gap-4">
                 <div>

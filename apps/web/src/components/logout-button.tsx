@@ -10,7 +10,7 @@ export function LogoutButton() {
     <div>
       <button
         disabled={busy}
-        className="min-h-11 px-3 text-sm text-slate-300 underline disabled:opacity-50"
+        className="secondary-action disabled:opacity-50"
         onClick={async () => {
           setBusy(true);
           setError('');

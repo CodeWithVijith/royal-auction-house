@@ -76,13 +76,13 @@ export function ResultsView({
     !data.engine.completed;
   const names = new Map(data.players.map((p) => [p._id, p.name]));
   return (
-    <main className="py-10">
+    <main className="py-8 sm:py-10">
       <div className="flex flex-wrap items-end justify-between gap-5">
         <div>
-          <p className="text-xs tracking-widest text-amber-300">
+          <p className="eyebrow">
             {data.auction.label} / {data.auction.denomination}
           </p>
-          <h1 className="mt-3 text-4xl font-semibold">
+          <h1 className="page-heading mt-3">
             {unsoldOnly ? 'Round review' : 'Auction results'}
           </h1>
           <p className="mt-3 text-slate-400">{data.auction.name}</p>
@@ -103,17 +103,14 @@ export function ResultsView({
               data.auction.denomination,
           ],
         ].map(([label, value]) => (
-          <div
-            key={label}
-            className="rounded-xl border border-slate-700 bg-slate-900 p-5"
-          >
+          <div key={label} className="stat-card">
             <dt className="text-sm text-slate-400">{label}</dt>
             <dd className="mt-2 text-2xl font-semibold">{value}</dd>
           </div>
         ))}
       </dl>
       {ready && (
-        <section className="mt-8 rounded-xl border border-amber-300/40 p-6">
+        <section className="panel mt-8 border-amber-500/40 p-6">
           <h2 className="text-2xl font-semibold">
             Round {data.engine?.round} finished
           </h2>
@@ -181,7 +178,12 @@ export function ResultsView({
           </table>
         </div>
         {data.players.length === 0 && (
-          <p className="mt-5 text-slate-400">No players imported yet.</p>
+          <div className="empty-state mt-5">
+            <h3 className="text-lg font-bold">No Players Yet</h3>
+            <p className="mt-2 text-slate-400">
+              Imported players and their results will appear here.
+            </p>
+          </div>
         )}
       </section>
       {!unsoldOnly && (
@@ -189,10 +191,7 @@ export function ResultsView({
           <h2 className="text-2xl font-semibold">Team rosters</h2>
           <div className="mt-5 grid gap-5 md:grid-cols-2">
             {data.teams.map((team) => (
-              <article
-                key={team._id}
-                className="rounded-xl border border-slate-700 bg-slate-900 p-6"
-              >
+              <article key={team._id} className="stat-card">
                 <h3 className="text-xl font-semibold">{team.name}</h3>
                 <p className="mt-3 text-sm text-amber-200">
                   {team.spent.toLocaleString('en-IN')} spent /{' '}

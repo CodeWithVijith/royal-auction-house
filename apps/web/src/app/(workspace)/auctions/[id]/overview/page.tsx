@@ -11,18 +11,16 @@ export default async function Page({
     '/auctions/' + encodeURIComponent(id),
   );
   return (
-    <main className="py-12">
+    <main className="py-8 sm:py-10">
       <Link href="/dashboard" className="text-sm text-amber-300 underline">
         Back to my auctions
       </Link>
       <div className="mt-8 flex flex-wrap items-center justify-between gap-5">
         <div>
-          <p className="text-xs tracking-widest text-amber-300">
+          <p className="eyebrow">
             {auction.status} / {auction.sport}
           </p>
-          <h1 className="mt-3 break-words text-4xl font-semibold">
-            {auction.name}
-          </h1>
+          <h1 className="page-heading mt-3 break-words">{auction.name}</h1>
         </div>
         {auction.status === 'DRAFT' && (
           <Link
@@ -51,16 +49,13 @@ export default async function Page({
                 auction.denomination,
           ],
         ].map(([label, value]) => (
-          <div
-            key={label}
-            className="rounded-xl border border-slate-700 bg-slate-900 p-6"
-          >
+          <div key={label} className="stat-card">
             <dt className="text-sm text-slate-400">{label}</dt>
             <dd className="mt-3 text-2xl font-semibold">{value}</dd>
           </div>
         ))}
       </dl>
-      <section className="mt-10 rounded-xl border border-slate-700 p-6">
+      <section className="panel mt-8 p-6">
         <h2 className="text-xl font-semibold">Auction workspace created</h2>
         <p className="mt-3 max-w-2xl text-slate-400">
           Your auction settings are saved. Review the budget, roster size, and

@@ -4,13 +4,11 @@ import { serverApi } from '@/lib/api';
 export default async function Dashboard() {
   const { auctions } = await serverApi<{ auctions: Auction[] }>('/auctions');
   return (
-    <main className="py-12">
+    <main className="py-8 sm:py-10">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="text-xs tracking-widest text-amber-300">
-            YOUR ORGANIZER WORKSPACE
-          </p>
-          <h1 className="mt-3 text-4xl font-semibold">My auctions</h1>
+          <p className="eyebrow">YOUR ORGANIZER WORKSPACE</p>
+          <h1 className="page-heading mt-3">My Auctions</h1>
           <p className="mt-3 text-slate-400">
             Prepare the next season. Build the next great team.
           </p>
@@ -20,9 +18,9 @@ export default async function Dashboard() {
         </Link>
       </div>
       {auctions.length === 0 ? (
-        <section className="mt-12 rounded-2xl border border-dashed border-slate-600 p-12 text-center">
+        <section className="empty-state mt-10">
           <p className="text-4xl text-amber-300" aria-hidden="true">
-            ?
+            +
           </p>
           <h2 className="mt-5 text-xl font-semibold">
             Your first auction starts here
@@ -48,7 +46,7 @@ export default async function Dashboard() {
               <Link
                 key={auction.id}
                 href={'/auctions/' + auction.id + '/overview'}
-                className="rounded-2xl border border-slate-700 bg-slate-900 p-6 transition hover:border-amber-300 focus-visible:outline-2 focus-visible:outline-amber-300"
+                className="stat-card group"
               >
                 <div className="flex justify-between gap-3">
                   <p className="text-sm text-slate-400">{auction.sport}</p>
@@ -56,7 +54,7 @@ export default async function Dashboard() {
                     {auction.status}
                   </span>
                 </div>
-                <h2 className="mt-6 break-words text-xl font-semibold">
+                <h2 className="mt-6 break-words text-xl font-bold transition group-hover:text-amber-300">
                   {auction.name}
                 </h2>
                 <p className="mt-5 text-sm text-slate-400">

@@ -8,15 +8,16 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { auction } = await serverApi<{ auction: Auction }>(
-    '/auctions/' + encodeURIComponent(id),
-  );
-  const data = await serverApi<{
-    players: ComponentProps<typeof PlayersList>['players'];
-  }>('/auctions/' + encodeURIComponent(id) + '/players');
+  const [{ auction }, data] = await Promise.all([
+    serverApi<{ auction: Auction }>('/auctions/' + encodeURIComponent(id)),
+    serverApi<{ players: ComponentProps<typeof PlayersList>['players'] }>(
+      '/auctions/' + encodeURIComponent(id) + '/players',
+    ),
+  ]);
   return (
-    <main className="py-10">
-      <h1 className="text-4xl font-semibold">Players</h1>
+    <main className="py-8 sm:py-10">
+      <p className="eyebrow">Roster management</p>
+      <h1 className="page-heading mt-3">Players</h1>
       <PlayersList
         id={id}
         players={data.players}

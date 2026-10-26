@@ -51,4 +51,41 @@ body {
   .action {
     @apply inline-flex min-h-11 items-center justify-center rounded-lg bg-gradient-to-r from-amber-600 to-amber-500 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-amber-500/20 transition hover:from-amber-500 hover:to-amber-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300;
   }
+  .page-heading {
+    @apply text-2xl font-bold tracking-tight text-white sm:text-3xl;
+  }
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.2em] text-amber-400;
+  }
+  .panel {
+    @apply rounded-2xl border border-slate-800 bg-slate-900/80 shadow-xl shadow-black/10 backdrop-blur-sm;
+  }
+  .stat-card {
+    @apply rounded-xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-800/70 p-5 shadow-lg transition hover:border-amber-500/40;
+  }
+  .empty-state {
+    @apply rounded-2xl border border-dashed border-slate-700 bg-slate-900/50 px-5 py-12 text-center;
+  }
+  .secondary-action {
+    @apply inline-flex min-h-11 items-center justify-center rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-amber-500/50 hover:bg-slate-700;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+th,
+td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+}
+tbody tr {
+  border-top: 1px solid rgba(51, 65, 85, 0.7);
 }

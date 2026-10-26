@@ -70,10 +70,7 @@ export function TeamManager({
     <section className="mt-8">
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {teams.map((team) => (
-          <article
-            key={team._id}
-            className="rounded-xl border border-slate-700 bg-slate-900 p-6"
-          >
+          <article key={team._id} className="stat-card">
             {team.logoUrl && (
               <img
                 className="mb-4 h-16 w-16 rounded-lg object-contain"
@@ -132,15 +129,21 @@ export function TeamManager({
         ))}
       </div>
       {!teams.length && (
-        <p className="text-slate-400">
-          No teams yet. Add the clubs taking part in this auction.
-        </p>
+        <div className="empty-state md:col-span-2 xl:col-span-3">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-amber-500/10 text-2xl text-amber-400">
+            +
+          </div>
+          <h2 className="mt-4 text-xl font-bold">No Teams Yet</h2>
+          <p className="mt-2 text-slate-400">
+            Add the clubs taking part in this auction.
+          </p>
+        </div>
       )}
       {!locked && (
         <form
           key={editing?._id ?? 'new'}
           onSubmit={submit}
-          className="mt-10 max-w-2xl space-y-5 rounded-xl border border-slate-700 p-6"
+          className="panel mt-10 max-w-2xl space-y-5 p-5 sm:p-6"
         >
           <h2 className="text-2xl font-semibold">
             {editing ? 'Edit team' : 'Add team'}

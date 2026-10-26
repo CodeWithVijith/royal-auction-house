@@ -38,9 +38,15 @@ export function PlayersList({
         />
       </label>
       {players.length === 0 && (
-        <p className="mt-8 text-slate-400">
-          No players imported yet. Use Import players to prepare your roster.
-        </p>
+        <div className="empty-state mt-8">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-amber-500/10 text-2xl text-amber-400">
+            P
+          </div>
+          <h2 className="mt-4 text-xl font-bold">No Players Yet</h2>
+          <p className="mt-2 text-slate-400">
+            Import your registration sheet to prepare the auction roster.
+          </p>
+        </div>
       )}
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {players
@@ -50,10 +56,7 @@ export function PlayersList({
             ),
           )
           .map((player) => (
-            <article
-              key={player._id}
-              className="rounded-xl border border-slate-700 bg-slate-900 p-5"
-            >
+            <article key={player._id} className="stat-card">
               <span className="text-xs text-amber-300">{player.status}</span>
               <h2 className="mt-3 text-xl font-semibold">{player.name}</h2>
               <dl className="mt-4 space-y-2 text-sm text-slate-400">
