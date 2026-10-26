@@ -18,9 +18,9 @@ export function AuctionNav({ id }: { id: string }) {
   return (
     <nav
       aria-label="Auction sections"
-      className="-mx-4 overflow-x-auto border-b border-slate-800 px-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+      className="-mx-4 overflow-x-auto border-b border-amber-500/25 bg-black/55 px-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:-mx-4 lg:px-4"
     >
-      <div className="flex min-w-max gap-1 py-3">
+      <div className="flex min-w-max justify-center gap-2 py-3 lg:mx-auto">
         {sections.map(([route, label]) => {
           const href = `/auctions/${id}/${route}`;
           const active = pathname === href;

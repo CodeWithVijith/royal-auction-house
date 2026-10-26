@@ -141,8 +141,8 @@ export function LiveAuction({
     });
   }
   return (
-    <main className="py-8 sm:py-10">
-      <div className="flex flex-wrap items-end justify-between gap-4">
+    <main className="py-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-amber-500/20 pb-4">
         <div>
           <p className="eyebrow">
             {data.auction.name} / {data.auction.denomination}
@@ -179,10 +179,10 @@ export function LiveAuction({
           </button>
         </div>
       )}
-      <div className="mt-8 grid gap-7 lg:grid-cols-[minmax(0,1.5fr)_minmax(18rem,1fr)]">
-        <section className="panel p-5 text-center sm:p-9">
+      <div className="mt-4 grid min-h-[calc(100dvh-12rem)] gap-4 lg:grid-cols-[22rem_minmax(0,1fr)]">
+        <section className="panel order-2 flex min-w-0 flex-col justify-center border-amber-500/25 p-5 text-center sm:p-8 lg:min-h-[calc(100dvh-12rem)]">
           <div
-            className="relative mx-auto h-48 w-48 sm:h-64 sm:w-64"
+            className="relative mx-auto h-56 w-56 sm:h-72 sm:w-72 xl:h-[23rem] xl:w-[23rem]"
             aria-hidden="true"
           >
             <div className="absolute -top-3 left-1/2 z-10 -translate-x-1/2 text-3xl text-amber-200">
@@ -366,32 +366,43 @@ export function LiveAuction({
               </Link>
             )}
         </section>
-        <aside aria-label="Team budgets" className="space-y-4">
-          {data.teams.map((team) => (
-            <article key={team._id} className="stat-card">
-              <h2 className="text-xl font-semibold">{team.name}</h2>
-              <div className="mt-4 flex justify-between gap-4">
-                <div>
-                  <p className="text-xs text-slate-400">Remaining</p>
-                  <p className="mt-1 text-xl text-amber-200">
-                    {team.remaining.toLocaleString('en-IN')}{' '}
-                    {data.auction.denomination}
-                  </p>
+        <aside
+          aria-label="Team budgets"
+          className="panel order-1 overflow-auto border-amber-500/25 p-3 lg:max-h-[calc(100dvh-12rem)]"
+        >
+          <h2 className="border-b border-amber-500/30 px-2 pb-3 text-center font-serif text-2xl font-bold text-amber-200">
+            TEAMS
+          </h2>
+          <div className="mt-3 space-y-3">
+            {data.teams.map((team) => (
+              <article
+                key={team._id}
+                className="rounded-xl border border-amber-500/30 bg-black/40 p-4 shadow-lg shadow-black/20"
+              >
+                <h3 className="font-bold text-white">{team.name}</h3>
+                <div className="mt-4 flex justify-between gap-4">
+                  <div>
+                    <p className="text-xs text-slate-400">Remaining</p>
+                    <p className="mt-1 text-base font-bold text-amber-300">
+                      {team.remaining.toLocaleString('en-IN')}{' '}
+                      {data.auction.denomination}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-slate-400">Slots used</p>
+                    <p className="mt-1 text-base font-bold">
+                      {team.usedSlots}/{team.maxSlots}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs text-slate-400">Slots used</p>
-                  <p className="mt-1 text-xl">
-                    {team.usedSlots}/{team.maxSlots}
-                  </p>
-                </div>
-              </div>
-            </article>
-          ))}
-          {!data.teams.length && (
-            <p className="text-slate-400">
-              Add at least one team before starting.
-            </p>
-          )}
+              </article>
+            ))}
+            {!data.teams.length && (
+              <p className="px-3 py-10 text-center text-sm text-slate-400">
+                Add at least one team before starting.
+              </p>
+            )}
+          </div>
         </aside>
       </div>
       {engine && (
