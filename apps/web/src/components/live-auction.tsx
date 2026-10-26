@@ -141,7 +141,7 @@ export function LiveAuction({
     });
   }
   return (
-    <main className="py-4">
+    <main className="relative py-3 lg:h-[calc(100dvh-82px)] lg:overflow-hidden">
       <div className="flex items-center justify-between gap-4 px-1 pb-3">
         <p className="eyebrow truncate">{data.auction.name}</p>
         <div
@@ -172,8 +172,8 @@ export function LiveAuction({
           </button>
         </div>
       )}
-      <div className="grid min-h-[calc(100dvh-8.8rem)] gap-3 lg:grid-cols-[22rem_minmax(0,1fr)]">
-        <section className="panel order-2 flex min-w-0 flex-col justify-center overflow-hidden border-amber-500/25 bg-gradient-to-br from-[#090909] via-[#0b0d12] to-[#101728] p-5 text-center sm:p-8 lg:min-h-[calc(100dvh-8.8rem)]">
+      <div className="grid min-h-[calc(100dvh-8.8rem)] gap-3 lg:h-[calc(100dvh-8.4rem)] lg:min-h-0 lg:grid-cols-[22rem_minmax(0,1fr)]">
+        <section className="panel order-2 flex min-w-0 flex-col justify-center overflow-hidden border-amber-500/25 bg-gradient-to-br from-[#090909] via-[#0b0d12] to-[#101728] p-5 text-center sm:p-8 lg:min-h-0">
           <div
             className="relative mx-auto h-56 w-56 drop-shadow-[0_0_45px_rgba(234,179,8,.32)] sm:h-72 sm:w-72 xl:h-[25rem] xl:w-[25rem]"
             aria-hidden="true"
@@ -361,7 +361,7 @@ export function LiveAuction({
         </section>
         <aside
           aria-label="Team budgets"
-          className="panel order-1 overflow-auto border-amber-500/25 p-3 lg:max-h-[calc(100dvh-12rem)]"
+          className="panel order-1 overflow-auto border-amber-500/25 p-3 lg:h-full"
         >
           <h2 className="border-b border-amber-500/30 px-2 pb-3 text-center font-serif text-2xl font-bold text-amber-200">
             TEAMS
@@ -399,7 +399,7 @@ export function LiveAuction({
         </aside>
       </div>
       {engine && (
-        <section className="mt-10">
+        <section className="mt-10 lg:hidden">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <h2 className="text-2xl font-semibold">Recent decisions</h2>
             <Button
@@ -446,6 +446,13 @@ export function LiveAuction({
           </ul>
         </section>
       )}
+      <footer className="pointer-events-none fixed bottom-0 left-0 z-30 hidden w-full items-center justify-center border-t border-amber-500/15 bg-black/85 py-2 text-xs text-slate-500 backdrop-blur lg:flex">
+        <span>Royal Auction House</span>
+        <span className="absolute right-5 flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 font-bold text-emerald-300">
+          <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]" />
+          {connected ? 'LIVE' : 'RECONNECTING'}
+        </span>
+      </footer>
       {modal && modal.lotId === current?._id && (
         <Dialog
           title={'Confirm ' + modal.decision + ' / ' + modal.name}

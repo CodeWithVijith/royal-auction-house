@@ -21,6 +21,8 @@ Use a premium black, slate, and amber auction-room aesthetic. Preserve Royal's d
 
 - Sticky, translucent black application header with a thin amber border.
 - Auction navigation is a single compact horizontal strip. It scrolls horizontally below tablet width and never expands the viewport.
+- On desktop, brand, primary auction navigation, and organizer profile occupy one header row.
+- The live room is a fixed-height event canvas: team rail on the left, auction stage on the right, and a persistent live footer. Audit history moves below the canvas only on smaller screens.
 - Primary actions use an amber gradient, white bold text, a subtle amber shadow, and restrained scale feedback.
 - Inputs use translucent slate fills, slate borders, and amber focus rings.
 - Authentication uses a centered, viewport-safe card with a blurred amber halo and circular auction mark.

@@ -70,3 +70,17 @@ Royal may occasionally take much longer after inactivity because its API runs on
 Royal Auction House is a closer match to the stated business requirements than the tested NeoAuction flow, especially for Excel-first player intake, configurable denominations, random selection, explicit unsold rounds, corrections, and Excel export. NeoAuction currently has the more immediately polished single-event shell and a faster initial login page, but its successful login transition was slow and its empty account did not expose enough data to validate the full auction lifecycle.
 
 The comparison cannot be considered a complete production acceptance test until the Royal production login is repaired and both products have disposable teams and players available for the same end-to-end scenario.
+
+## Production acceptance update — 26 October 2026
+
+Royal production authentication is now working. A representative auction was exercised with three teams and six spreadsheet-imported players. Random selection, a ₹15,000 sold decision, an unsold decision, team budget reconciliation, roster-slot reconciliation, and the results summary all completed successfully.
+
+The resulting UI comparison identified and addressed these remaining differences:
+
+- Royal now uses one unified desktop header for crest, brand, primary navigation, and profile control.
+- The live room is constrained to one desktop viewport, with the team rail and event stage sharing the available height.
+- Recent audit decisions no longer push the desktop event canvas below the fold; they remain available on smaller layouts and through Results.
+- A persistent LIVE/RECONNECTING footer mirrors the reference's event status treatment.
+- The API now opens its MongoDB pool during process startup, avoiding the connection setup cost on the first organizer request after the service wakes.
+
+The reference still uses its own institutional crest and proprietary wing/wheel artwork. Royal intentionally uses original branding and CSS-rendered wheel artwork rather than copying those assets.
