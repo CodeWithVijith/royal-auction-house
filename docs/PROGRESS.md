@@ -1,5 +1,11 @@
 # Progress
 
+## Render bootstrap diagnostic follow-up - 2026-10-26
+
+Repeated cloud startup logs exposed only the generic MongoDB bootstrap failure. The actual cloud cause is still unverified. Added stage-specific, credential-safe error categories, preserved driver causes internally, and tested nested topology/authentication errors, unknown codes and secret redaction. Updated render.yaml to invoke Corepack directly instead of modifying read-only system shims. Documented manual Free Web Service commands and secondary port-scan failures. No Atlas settings, records or indexes were reset; cloud credentials remain private and unavailable locally. Deployment must use this revision before the new safe diagnostic can identify the next action.
+
+Validation: formatting, lint and typecheck PASS; 25 unit tests PASS; real MongoDB bootstrap and 35 integration tests PASS; API build PASS. The first unit run lacked the existing Windows native-runtime PATH for Argon2; rerunning with .cache/vclibs on PATH passed without reinstalling dependencies. No frontend behavior changed, so browser tests were not repeated. Push this diagnostic revision and redeploy, then inspect the safe stage/category line to determine the actual Atlas fix.
+
 ## Current delivery status
 
 Phases 0–5 are implemented and validated sequentially. Phase 6 application functionality is implemented and locally validated, including authenticated real-time rooms, REST recovery, private S3/R2 adapter, schema readiness gating, request IDs and operational deployment documentation. Cloud deployment remains blocked by missing completed Atlas credentials and connected hosting/storage accounts; no hosted deployment or cloud backup verification is claimed. Phase 6 remains open specifically for these production gates.

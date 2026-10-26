@@ -7,7 +7,7 @@ services:
     region: singapore
     plan: 0.5c-512mb
     autoDeployTrigger: 'off'
-    buildCommand: corepack enable && pnpm install --frozen-lockfile --prod=false && pnpm --filter @sports/api build
+    buildCommand: corepack pnpm install --frozen-lockfile --prod=false && corepack pnpm --filter @sports/api build
     preDeployCommand: pnpm db:deploy
     startCommand: pnpm --filter @sports/api start
     healthCheckPath: /health/ready

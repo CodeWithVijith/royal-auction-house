@@ -33,10 +33,10 @@ export async function connectDb(): Promise<Db> {
           delete state.pending;
           return client;
         })
-        .catch(async () => {
+        .catch(async (cause: unknown) => {
           delete state.pending;
           await client.close();
-          throw new Error('MongoDB connection unavailable');
+          throw new Error('MongoDB connection unavailable', { cause });
         });
     }
     await state.pending;

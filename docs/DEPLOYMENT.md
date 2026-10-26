@@ -62,3 +62,9 @@ Monitor /health/live and /health/ready, deployment failures, error rates, transa
 Rollback: redeploy the last validated application revision with its compatible schema marker. Do not reverse financial decisions or restore an older database over active sales as an application rollback; pause auctions and reconcile using the audit/ledger before any data recovery.
 
 No deployment URL or cloud verification is claimed until these account-dependent checks pass.
+
+## Manual Free Web Service and bootstrap failures
+
+The Blueprint selects paid compute. A manually created Free Node Web Service can use the repository root, NODE_VERSION=22, build command `corepack pnpm install --frozen-lockfile --prod=false && corepack pnpm --filter @sports/api build`, and start command `corepack pnpm db:deploy && corepack pnpm --filter @sports/api start`. Free services lack a separate pre-deploy step, so the idempotent setup runs before Express. Free service idle suspension makes this a testing deployment, subject to Render account verification and current service limits. Do not run corepack enable against Render's read-only system installation.
+
+Bootstrap now logs a safe JSON category and stage without raw MongoDB messages, stacks, credentials, URIs or duplicate record values. CONFIGURATION/INVALID_URI indicates the connection variable; AUTHENTICATION indicates database credentials; DATABASE_PERMISSIONS indicates grants on MONGODB_DB_NAME; DNS indicates hostname/resolution; NETWORK_OR_CLUSTER indicates selection/network failure (not definitive proof of a missing IP rule); INDEX_CONFLICT/DUPLICATE_DATA requires reviewing existing data/indexes without resetting them. Unknown errors retain only a numeric server code. Share only this safe diagnostic line when troubleshooting. A bootstrap exit prevents Express starting, so a subsequent no-open-ports message is secondary.
