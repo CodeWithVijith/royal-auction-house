@@ -142,19 +142,12 @@ export function LiveAuction({
   }
   return (
     <main className="py-4">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-amber-500/20 pb-4">
-        <div>
-          <p className="eyebrow">
-            {data.auction.name} / {data.auction.denomination}
-          </p>
-          <h1 className="page-heading mt-3">Live Auction</h1>
-          <p className="mt-2 text-xs text-slate-400">
-            {connected
-              ? 'Live connection active'
-              : 'Checking for updates; REST recovery active'}
-          </p>
-        </div>
-        <div role="status" className="text-sm text-slate-300">
+      <div className="flex items-center justify-between gap-4 px-1 pb-3">
+        <p className="eyebrow truncate">{data.auction.name}</p>
+        <div
+          role="status"
+          className="shrink-0 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-300"
+        >
           {engine
             ? engine.completed
               ? 'Completed'
@@ -179,26 +172,26 @@ export function LiveAuction({
           </button>
         </div>
       )}
-      <div className="mt-4 grid min-h-[calc(100dvh-12rem)] gap-4 lg:grid-cols-[22rem_minmax(0,1fr)]">
-        <section className="panel order-2 flex min-w-0 flex-col justify-center border-amber-500/25 p-5 text-center sm:p-8 lg:min-h-[calc(100dvh-12rem)]">
+      <div className="grid min-h-[calc(100dvh-8.8rem)] gap-3 lg:grid-cols-[22rem_minmax(0,1fr)]">
+        <section className="panel order-2 flex min-w-0 flex-col justify-center overflow-hidden border-amber-500/25 bg-gradient-to-br from-[#090909] via-[#0b0d12] to-[#101728] p-5 text-center sm:p-8 lg:min-h-[calc(100dvh-8.8rem)]">
           <div
-            className="relative mx-auto h-56 w-56 sm:h-72 sm:w-72 xl:h-[23rem] xl:w-[23rem]"
+            className="relative mx-auto h-56 w-56 drop-shadow-[0_0_45px_rgba(234,179,8,.32)] sm:h-72 sm:w-72 xl:h-[25rem] xl:w-[25rem]"
             aria-hidden="true"
           >
             <div className="absolute -top-3 left-1/2 z-10 -translate-x-1/2 text-3xl text-amber-200">
               ▼
             </div>
             <div
-              className="h-full w-full rounded-full border-8 border-slate-700 shadow-xl"
+              className="h-full w-full rounded-full border-[10px] border-amber-500/40 shadow-2xl shadow-amber-500/20 ring-4 ring-black"
               style={{
                 background:
-                  'conic-gradient(#fcd34d 0deg 45deg,#334155 45deg 90deg,#38bdf8 90deg 135deg,#1e293b 135deg 180deg,#f59e0b 180deg 225deg,#475569 225deg 270deg,#34d399 270deg 315deg,#0f172a 315deg 360deg)',
+                  'conic-gradient(#f6d65b 0deg 45deg,#101827 45deg 90deg,#d6ad35 90deg 135deg,#182235 135deg 180deg,#f7df78 180deg 225deg,#111827 225deg 270deg,#c99722 270deg 315deg,#1e293b 315deg 360deg)',
                 transform: 'rotate(' + rotation + 'deg)',
                 transition: 'transform 1.8s cubic-bezier(.12,.7,.15,1)',
               }}
             />
-            <div className="absolute inset-[36%] flex items-center justify-center rounded-full bg-slate-950 text-sm font-bold text-amber-200">
-              AUCTION
+            <div className="absolute inset-[35%] flex items-center justify-center rounded-full border-4 border-amber-500/40 bg-black text-sm font-black tracking-widest text-amber-200 shadow-inner">
+              ROYAL
             </div>
           </div>
           <div aria-live="polite" className="mt-8 min-h-28">

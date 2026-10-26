@@ -10,7 +10,7 @@ export function LogoutButton() {
     <div>
       <button
         disabled={busy}
-        className="secondary-action disabled:opacity-50"
+        className="min-h-10 rounded-full border border-amber-500/40 bg-black px-4 text-sm font-bold text-slate-200 transition hover:bg-amber-500/10 hover:text-amber-300 disabled:opacity-50"
         onClick={async () => {
           setBusy(true);
           setError('');
@@ -25,7 +25,7 @@ export function LogoutButton() {
           }
         }}
       >
-        {busy ? 'Signing out...' : 'Sign out'}
+        {busy ? '...' : 'Admin'}
       </button>
       {error && (
         <p role="alert" className="text-xs text-red-200">
