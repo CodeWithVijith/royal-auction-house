@@ -141,7 +141,7 @@ export function LiveAuction({
     });
   }
   return (
-    <main className="relative py-3 lg:h-[calc(100dvh-82px)] lg:overflow-hidden">
+    <main className="relative py-3 lg:h-[calc(100dvh-83px)] lg:overflow-hidden">
       <div className="flex items-center justify-between gap-4 px-1 pb-3">
         <p className="eyebrow truncate">{data.auction.name}</p>
         <div
